@@ -1,130 +1,58 @@
 
 
-let exit
-let monto
-let dias
-let tipo
-let intereses
-
-function validarTipo(tipo) {
-    if(isNaN(tipo)||tipo<1||tipo>3){
-        alert("Ingrese un numero valido")
-        return false
-    }
-    else{
-        return true
+class Producto {
+    constructor(nombre, marca, precio, stock){
+        this.nombre = nombre
+        this.marca = marca
+        this.precio = precio
+        this.stock = stock
     }
 }
 
-function validarMonto(monto){
-    if(isNaN(monto)||monto<1){
-        alert ("Ingrese un monto valido")
-        return false
-    }
-    else{
-        return true
-    }
+function verProductos(){
+    PRODUCTOS.forEach((prod) => {
+        console.log(prod)
+    })
 }
 
-function validarDias (dias){
-    if(isNaN(dias)||dias<30||dias>365){
-        alert("Ingrese una cantidad valida")
-        return false
-    }
-    else{
-        return true
-    }
+function buscarProducto(){
+    let busqueda = prompt("Ingrese producto")
+    PRODUCTOS.forEach((prod)=>{
+        if(prod.nombre==busqueda){
+            console.log("vas a comprar",prod.nombre, prod.marca,"precio $",prod.precio,"stock", prod.stock)
+            prod.stock-=1
+            console.log("muchas gracias")
+        }
+    })
 }
 
+const Producto1 = new Producto("zapatilla","adidas",7500,7)
+const Producto2 = new Producto("campera","nike",11000,5)
+const Producto3 = new Producto("remera", "puma",3000,8)
 
-function clasico (monto,dias){
-    return monto*(46/365*dias)/100
-}
+let PRODUCTOS =  [Producto1,Producto2,Producto3]
 
-function precancelable(monto,dias){
-    if(dias<=60){
-        return monto*(13.5/365*dias)/100
-    }
-    else if(dias>=60&&dias<90){
-        return monto*(15/365*dias)/100
-    }
-    else if(dias>=90&&dias<120){
-        return monto*(16.5/365*dias)/100
-    }
-    else if(dias>=120&&dias<150){
-        return monto*(18/365*dias)/100
-    }
-    else if(dias>=150&&dias<180){
-        return monto*(19.5/365*dias)/100
-    }
-    else if(dias>=180){
-        return monto*(20.25/365*dias)/100
-    }
-}
-
-function dolares(monto,dias){
-    if(dias<90){
-        return monto*(0.1/365*dias)/100
-    }
-    else{
-        return monto*(0.15/365*dias)/100
-    }
-}
-
-function resultado(intereses,monto){
-    console.log("intereses ganados = ", intereses.toFixed(2), "monto total", (monto+intereses).toFixed(2))
-}
-
-do{ 
-    tipo = parseInt(prompt("Seleccione tipo de plazo fijo 1- Clasico en pesos 2- Precancelable en pesos 3- Plazo fijo en Dolares"))
-
-    if(validarTipo(tipo)==true){
-        exit = true
-    }
-    else{
-        exit = false
-    }
-
-} while(exit==false)
+let salir = false
 
 do{
-    monto = parseFloat(prompt("Ingrese un monto"))
-
-    if(validarMonto(monto)==true){
-        exit = true
+    let opcion = parseInt(prompt("seleccione una opcion. 1 Ver productos 2 Comprar 3 Salir"))
+    switch(opcion){
+        case 1:
+            verProductos()
+            break
+        case 2:
+            buscarProducto()
+            
+            break
+        case 3:
+            salir=true
+            break
     }
-    else{
-        exit = false
-    }
-} while(exit==false)
 
-do {
-    dias = parseInt(prompt("Ingrese cantidad de dias (minimo 30 maximo 365)"))
-    if(validarDias(dias)==true){
-        exit = true
-    }
-    else{
-        exit = false
-    }
-} while(exit==false)
+}while(salir == false)
 
-switch(tipo){
-    case 1:
-        intereses = clasico(monto,dias)
-        resultado(intereses,monto)
-        break
-    case 2:
-        intereses = precancelable (monto,dias)
-        resultado(intereses,monto)
-        break
-    case 3:
-        intereses = dolares (monto,dias)
-        resultado(intereses,monto)
-        break
-}
-
-
-
+console.log(PRODUCTOS)
+console.log("Hasta Luego")
 
 
 
