@@ -1,0 +1,23 @@
+[
+    {
+        "nombre" : "zapatillas",
+        "marca" : "nike",
+        "precio" : 12000,
+        "stock" : 5,
+        "id" : 1
+    },
+    {
+        "nombre" : "remera",
+        "marca" : "puma",
+        "precio" : 5500,
+        "stock" : 6,
+        "id" : 2
+    },
+    {
+        "nombre" : "campera",
+        "marca" : "adidas",
+        "precio" : 10200,
+        "stock" : 4,
+        "id" : 3
+    }
+]
